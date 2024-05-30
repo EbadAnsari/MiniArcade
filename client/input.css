@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scrollbar {
+	@apply pr-1;
+}
+
+.scrollbar:hover::-webkit-scrollbar-track {
+	@apply w-20 rounded-full;
+}
+
+.scrollbar::-webkit-scrollbar {
+	@apply w-1.5 rounded-full;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+	@apply bg-transparent transition-colors duration-1000;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+	@apply rounded-full bg-white/20;
+}
+
+* {
+	@apply outline-none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	@apply select-none overflow-hidden bg-arsenic-800;
+}
+
+html {
+	scrollbar-gutter: unset;
+}
+
+.call :has(.x, .o) {
+	@apply fill-none stroke-none;
+}
+
+.call:hover .x {
+	@apply fill-none stroke-x stroke-[35px];
+}
+.call:hover .o {
+	@apply fill-none stroke-o stroke-[35px];
+}
+.scale-down::after {
+	@apply !scale-50;
+}
+.scale-down + div {
+	@apply pointer-events-none origin-top-right scale-95 opacity-0;
+}
+
+@keyframes left-right {
+	from {
+		@apply left-1/2;
+	}
+	to {
+		@apply left-0;
+	}
+}
+
+@keyframes right-left {
+	from {
+		@apply left-0;
+	}
+	to {
+		@apply left-1/2;
+	}
+}
+
+@keyframes loading {
+	from {
+		@apply -left-[110%];
+	}
+	to {
+		@apply left-[110%];
+	}
+}
+
+@keyframes strech {
+	from {
+		@apply w-full;
+	}
+	to {
+		@apply w-0;
+	}
+}
