@@ -3,39 +3,36 @@ import { socketUrl } from "@util/development";
 import { io } from "socket.io-client";
 
 export class MultiplayerConnectionError extends Error {
-	static notConnected = "Not connected to server.";
-	static connctionNotEstablish = "Connection is not establish.";
-
-	constructor(message: string) {
-		super(message);
-	}
+	public static readonly notConnected = "Not connected to server.";
+	public static readonly connctionNotEstablish =
+		"Connection is not establish.";
 }
 
-export class MultiplayerConnection implements Emit<EmitEventMap> {
-	private socket = io(socketUrl);
+export class MultiplayerClient implements Emit<EmitEventMap> {
+	socket = io(socketUrl, {
+		autoConnect: false,
+	});
 
 	get connected(): boolean {
 		return this.socket.connected;
 	}
 
-	get id(): string {
+	get socketId(): string {
 		if (this.socket.id) return this.socket.id;
-		throw new MultiplayerConnectionError(
-			MultiplayerConnectionError.notConnected,
-		);
-	}
-
-	get userId(): string {
-		if (this.socket.id) return this.socket.id;
-		throw new MultiplayerConnectionError(
-			MultiplayerConnectionError.notConnected,
-		);
+		throw MultiplayerConnectionError.notConnected;
 	}
 
 	connect(callback: () => void) {
+		this.socket.connect();
+		console.log("[socket] connecting...");
 		this.socket.on("connect", () => {
+			console.log("[socket] connected.");
 			callback();
 		});
+	}
+
+	disconnect() {
+		this.socket.disconnect();
 	}
 
 	error(callback: (error: any) => void) {
@@ -45,14 +42,11 @@ export class MultiplayerConnection implements Emit<EmitEventMap> {
 		});
 	}
 
-	emitData<T extends keyof EmitEventMap>(
-		event: T,
-		data: EmitEventMap[T],
-	): void {
+	emit<T extends keyof EmitEventMap>(event: T, data: EmitEventMap[T]): void {
 		this.socket.emit(<string>event, data);
 	}
 
-	getData<T extends keyof EmitEventMap>(
+	on<T extends keyof EmitEventMap>(
 		event: T,
 		callback: (data: EmitEventMap[T]) => void,
 	): void {

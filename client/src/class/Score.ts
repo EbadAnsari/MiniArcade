@@ -42,6 +42,10 @@ export class ScoreCollection extends FirebaseUtils {
 		this._userName = userName;
 	}
 
+	get isLoggedIn() {
+		return this.email !== undefined;
+	}
+
 	private dispatch: CustomDispatch<UserInformation>;
 
 	private run(userInformation?: UserInformation) {
@@ -120,7 +124,7 @@ export class ScoreCollection extends FirebaseUtils {
 	}
 
 	unSetUser() {
-		this.uid = undefined;
+		this.uid = "";
 		this.userName = undefined;
 		this.score = { cpu: 0, you: 0 };
 		this.photoUrl = null;

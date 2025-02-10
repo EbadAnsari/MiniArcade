@@ -6,6 +6,7 @@ import { O } from "@icon/O";
 import { X } from "@icon/X";
 import IconButton from "@ui/IconButton";
 import { AppRoutes } from "@util/AppRoutes";
+import { dev } from "@util/development";
 import { oppositePlayer } from "@util/functions";
 import { Link } from "react-router-dom";
 
@@ -116,16 +117,18 @@ export function StartGame() {
 					text="Multiplayer (vs Player)"
 					title="New game with human."
 				/>
-				<IconButton
-					X
-					to={AppRoutes.match}
-					iconSrc="/online.svg"
-					onClick={() => {
-						console.log("online playing.");
-					}}
-					text="Multiplayer (vs Online)"
-					title="New game with online player."
-				/>
+				{dev && (
+					<IconButton
+						X
+						to={AppRoutes.match}
+						iconSrc="/online.svg"
+						onClick={() => {
+							console.log("online playing.");
+						}}
+						text="Multiplayer (vs Online)"
+						title="New game with online player."
+					/>
+				)}
 				{/* </Link> */}
 				{/* <IconButton
 					colorScheme="O"

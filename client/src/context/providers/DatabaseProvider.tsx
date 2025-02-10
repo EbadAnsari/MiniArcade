@@ -37,7 +37,6 @@ export default function DatabaseProvider({
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				userFunctions.setUser(user);
-				// console.log("User:", user.email);
 			}
 		});
 		return () => {

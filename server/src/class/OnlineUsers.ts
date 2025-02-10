@@ -1,49 +1,53 @@
-import { OnlineUser, TransactionInformation } from "@interface/Emit";
+import { TransactionInformation, User } from "@interface/Emit";
+import { FilterQuery } from "mongoose";
+import OnlineUserModel, { OnlineUserDocument } from "./../model/OnlinUsers";
+import { dbConnect } from "./../util/dbConnect";
 
-export class OnlineUsers {
-	private onlineUsers: (OnlineUser & TransactionInformation)[] = [];
+export class OnlineUser {
+	constructor() {
+		dbConnect();
+	}
 
-	get length(): number {
-		return this.onlineUsers.length;
+	get countUser() {
+		return new Promise((resolve) => {
+			OnlineUserModel.countDocuments().then((count) => {
+				resolve(count);
+			});
+		});
 	}
 
 	/**
-	 * Add new online user to the list.
-	 * @param userInformation {OnlineUser} user information to be add to an array.
+	 * If the user is already in the database update it's socketId otherwise add the document.
+	 * @param userInformation {SocketUser} user information to be add to an array.
 	 */
-	addUser(userInformation: OnlineUser & TransactionInformation) {
-		if (
-			this.onlineUsers.findIndex(
-				(value) => value.uid === userInformation.uid
-			) === -1
-		)
-			this.onlineUsers.push(userInformation);
+	async addOrUpdateUser({ uid, ...userInformation }: User) {
+		return await OnlineUserModel.findOneAndUpdate(
+			{
+				uid,
+			},
+			userInformation,
+			{
+				upsert: true,
+			}
+		);
+		// return await onlineUser.save();
 	}
 
 	/**
 	 * Remove user from the list.
 	 * @param predicate remove user on the basics of predicate function.
 	 */
-	removeUser(
-		predicate: (value: OnlineUser & TransactionInformation) => boolean
-	) {
-		let iter = 0;
-		for (let index = 0; index < this.onlineUsers.length; index++) {
-			if (predicate(this.onlineUsers[index])) {
-				this.onlineUsers[iter] = this.onlineUsers[index];
-				iter++;
-			}
-		}
-		this.onlineUsers.length = iter;
+	async removeUser(filter?: FilterQuery<OnlineUserDocument> | undefined) {
+		return await OnlineUserModel.deleteMany(filter);
 	}
 
 	/**
-	 * Give a single user from the list.
-	 * @param index
+	 * Give a single user from the OnlineUsers Collection.
+	 * @param uid
 	 * @returns
 	 */
-	getUser(index: number) {
-		return this.onlineUsers.at(index);
+	getUserById(uid: User["uid"]) {
+		return OnlineUserModel.findOne({ uid });
 	}
 
 	/**
@@ -51,15 +55,23 @@ export class OnlineUsers {
 	 * @param predicate
 	 * @returns
 	 */
-	filterUsers(
-		predicate: (value: OnlineUser & TransactionInformation) => boolean
-	) {
-		const users = new OnlineUsers();
-		users.onlineUsers = this.onlineUsers.filter(predicate);
-		return users;
+	filterUsers(predicate: (value: User) => boolean) {
+		// const users = new OnlineUser();
+		// users.onlineUsers = this.onlineUsers.filter(predicate);
+		// return users;
 	}
 
-	toArray() {
-		return [...this.onlineUsers];
+	async findUserBySocketId(socketId: TransactionInformation["socketId"]) {
+		return await OnlineUserModel.findOne({ socketId });
+	}
+
+	getAllUsers() {
+		return OnlineUserModel.find(
+			{},
+			{
+				_id: false,
+				__v: false,
+			}
+		);
 	}
 }

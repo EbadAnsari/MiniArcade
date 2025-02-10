@@ -1,6 +1,5 @@
 import MediaQuery from "@components/MediaQuery";
 import { dev } from "@util/development";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
@@ -35,11 +34,12 @@ import App from "./App";
 // })();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-	<React.StrictMode>
+	// <React.StrictMode>
+	<>
 		<App />
 		{/* <div className="fixed left-1/2 top-1/2">
 			<Parent />
 		</div> */}
 		{dev && <MediaQuery />}
-	</React.StrictMode>,
+	</>,
 );

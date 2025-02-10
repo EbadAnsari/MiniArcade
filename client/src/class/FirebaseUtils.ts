@@ -32,18 +32,16 @@ export class FirebaseUtils {
 		this._profilePhoto = value;
 	}
 
-	constructor(
-		uid: UID,
-		email: Email,
-		// dispatch: CustomDispatch<UserInformation>,
-	) {
-		// super(dispatch);
+	constructor(uid: UID, email: Email) {
 		this._uid = uid;
 		this._email = email;
 	}
 
 	async login(email: string, password: string) {
-		return signInWithEmailAndPassword(auth, email, password);
+		console.log("[login] processing...");
+		const login = await signInWithEmailAndPassword(auth, email, password);
+		console.log("[login] done.");
+		return login;
 	}
 
 	async signin(email: string, password: string) {
@@ -51,6 +49,9 @@ export class FirebaseUtils {
 	}
 
 	async logout() {
-		return signOut(auth);
+		console.log("[logout] processing...");
+		const logout = await signOut(auth);
+		console.log("[logout] done.");
+		return logout;
 	}
 }

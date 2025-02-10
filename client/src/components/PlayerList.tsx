@@ -1,17 +1,27 @@
-import { UserList } from "@interface/Emit";
+import { User } from "@interface/Emit";
 
 type PlayerListProps = {
-	userList: UserList;
-	description: string;
+	userList: User[];
+	onClick(user: User, index: number): void;
 };
 
-export default function PlayerList({ userList }: PlayerListProps) {
+export default function PlayerList({ userList, onClick }: PlayerListProps) {
 	return (
 		<ul className="scrollbar h-[30rem] space-y-3 overflow-y-scroll">
-			{userList.toArray().map((user) => (
+			{/* <AnimatePresence> */}
+			{userList.map((user, index) => (
 				<li
-					key={user.onlineUserId}
+					// exit={{
+					// 	opacity: 0,
+					// }}
+					// transition={{
+					// 	duration: 0.1,
+					// }}
+					key={user.uid}
 					title={user.email}
+					onClick={() => {
+						onClick(user, index);
+					}}
 					className="flex w-full cursor-pointer items-center justify-between rounded-lg border-2 border-white/10 px-6 py-3 text-lg text-white hover:border-white"
 				>
 					<p className="my-auto">{user.userName}</p>
@@ -22,6 +32,7 @@ export default function PlayerList({ userList }: PlayerListProps) {
 					/>
 				</li>
 			))}
+			{/* </AnimatePresence> */}
 		</ul>
 	);
 }

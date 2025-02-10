@@ -15,6 +15,7 @@ export default defineConfig({
 			"@util": resolve(__dirname, "./src/util"),
 			"@class": resolve(__dirname, "./src/class"),
 			"@context": resolve(__dirname, "./src/context"),
+			"@hook": resolve(__dirname, "./src/hook"),
 		},
 	},
 	preview: { open: true },

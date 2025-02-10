@@ -9,10 +9,8 @@
 
 		"baseUrl": "./src",
 		"paths": {
-			"@model/*": ["model/*"],
 			"@routes/*": ["routes/*"],
-			"@interface/*": ["interface/*"],
-			"@util/*": ["util/*"]
+			"@interface/*": ["interface/*"]
 		}
 	}
 }

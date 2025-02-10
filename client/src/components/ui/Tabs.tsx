@@ -16,6 +16,12 @@ export default function Tabs({
 }: TabsProps) {
 	motion;
 	const [selectedIndex, setSelectedIndex] = useState<number>(selected ?? 0);
+
+	function handleClick(index: number) {
+		setSelectedIndex(index);
+		onClick(index);
+	}
+
 	return (
 		tabs.length && (
 			<ul
@@ -29,8 +35,7 @@ export default function Tabs({
 					<li
 						key={title}
 						onClick={() => {
-							setSelectedIndex(index);
-							onClick(index);
+							handleClick(index);
 						}}
 						title={description}
 						className={`w-full cursor-pointer rounded-lg py-2 text-center text-lg text-white ${selectedIndex === index ? "bg-arsenic-800" : "hover:bg-white/10"}`}
