@@ -111,7 +111,23 @@ export class TicTacToeGame extends Matrix implements TicTacToe.GameState {
 	}
 
 	/*  */
-	gameInfo: GameType.MultiPlayerGame<TicTacToe.Score, TicTacToe.Player>;
+	private _gameInfo: GameType.MultiPlayerGame<
+		TicTacToe.Score,
+		TicTacToe.Player
+	>;
+	public get gameInfo(): GameType.MultiPlayerGame<
+		TicTacToe.Score,
+		TicTacToe.Player
+	> {
+		return this._gameInfo;
+	}
+	public set gameInfo(
+		value: GameType.MultiPlayerGame<TicTacToe.Score, TicTacToe.Player>,
+	) {
+		this._gameInfo = value;
+		console.trace(this._gameInfo);
+	}
+
 	matchFinish: GameType.MatchFinish<Winner, true>;
 	get board(): MatrixType {
 		return super.board;
@@ -236,13 +252,14 @@ export class TicTacToeGame extends Matrix implements TicTacToe.GameState {
 	) {
 		super(options.board);
 
-		this.gameInfo = options.gameInfo;
+		this._gameInfo = options.gameInfo;
 		this.matchFinish = options.matchFinish;
 
 		this.dispatch = dispatch;
 	}
 
 	run(force: boolean = true) {
+		// console.trace(this.gameInfo);
 		if (force)
 			this.dispatch({
 				board: this.board,

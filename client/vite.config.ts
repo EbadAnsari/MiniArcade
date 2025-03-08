@@ -20,6 +20,6 @@ export default defineConfig({
 	},
 	preview: { open: true },
 	server: {
-		open: "/online",
+		open: "/online?asdfasdf=der",
 	},
 });

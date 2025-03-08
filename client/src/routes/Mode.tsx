@@ -21,6 +21,8 @@ export default function Mode() {
 							key={level}
 							ball={index + 1}
 							onClick={() => {
+								// debugger;
+								// console.log(game.mode);
 								game.difficultyLevel =
 									level as GameType.DifficultyLevel;
 								game.run();

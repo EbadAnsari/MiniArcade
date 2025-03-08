@@ -4,7 +4,7 @@ import {
 	MatrixType,
 	Player,
 	Vector,
-} from "./matrix-types";
+} from "@class/matrix-types";
 
 export function checkWinner(matrix: MatrixType): CheckWinner {
 	for (

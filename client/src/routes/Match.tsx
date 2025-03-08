@@ -8,6 +8,8 @@ import { useTicTacToe } from "@context/hooks/useGame";
 export function Match() {
 	const { gameFunctions: game } = useTicTacToe();
 
+	console.log(game.mode);
+
 	return (
 		<RouteAnimate className="relative">
 			<div className="flex flex-col items-center gap-5">

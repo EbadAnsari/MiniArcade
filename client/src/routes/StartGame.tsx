@@ -16,6 +16,7 @@ export function StartGame() {
 	const { user } = useUser();
 
 	function handleMultiplayerClick() {}
+	handleMultiplayerClick();
 
 	return (
 		<RouteAnimate className="relative -top-3">
@@ -45,7 +46,9 @@ export function StartGame() {
 			<ChoosePlayer
 				player={game.choosenPlayer}
 				onChange={(player) => {
+					console.log("chose");
 					game.choosenPlayer = player;
+					game.run();
 				}}
 			/>
 			<div className="mt-10 flex flex-col space-y-3">
@@ -59,7 +62,7 @@ export function StartGame() {
 					to={AppRoutes.mode}
 					iconSrc="/processor.svg"
 					onClick={() => {
-						game.mode = "cpu";
+						// game.mode = "cpu";
 
 						game.gameInfo = {
 							mode: "cpu",
@@ -79,6 +82,8 @@ export function StartGame() {
 							},
 						};
 
+						// console.log(game.mode);
+
 						game.run();
 					}}
 					text="New Game (vs CPU)"
@@ -94,7 +99,8 @@ export function StartGame() {
 					to={AppRoutes.match}
 					iconSrc="/muiltiplayer-profile.svg"
 					onClick={(event) => {
-						event.preventDefault();
+						event;
+						// event.preventDefault();
 
 						game.mode = "individual";
 						game.score = {

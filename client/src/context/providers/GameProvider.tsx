@@ -12,6 +12,7 @@ export default function TicTacToeProvider({
 	children,
 }: Readonly<PropsWithChildren>) {
 	const { user } = useUser();
+	user;
 
 	const gameStateRef: TicTacToe.GameState = {
 		board: [
@@ -36,6 +37,8 @@ export default function TicTacToeProvider({
 
 	const [gameState, setGameState] =
 		useState<TicTacToe.GameState>(gameStateRef);
+
+	// console.log(gameState, "here");
 
 	const gameFunctions = new TicTacToeGame(gameState, setGameState);
 

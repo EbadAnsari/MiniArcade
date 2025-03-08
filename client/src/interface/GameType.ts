@@ -1,6 +1,7 @@
 export namespace GameType {
 	// type GameType = "single" | "multiplayer" | "online";
 
+	/* Select between "cpu" and "individual" */
 	export type Mode = "individual" | "cpu";
 
 	export type Online = "online";

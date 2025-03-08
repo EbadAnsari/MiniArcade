@@ -42,4 +42,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 		</div> */}
 		{dev && <MediaQuery />}
 	</>,
+	// {/* </React.StrictMode>, */}
 );

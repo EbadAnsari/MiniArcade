@@ -1,8 +1,6 @@
 import { MultiplayerClient } from "@class/Multiplayer";
 import { useUser } from "@context/hooks/useUser";
 import { useUserList } from "@hook/useUserList";
-import { dev } from "@util/development";
-import { getValue } from "@util/getValue";
 import { PropsWithChildren, createContext, useContext, useEffect } from "react";
 
 const multiplayer = new MultiplayerClient();
@@ -58,13 +56,16 @@ export const u: { email: string; userName: string }[] = [
 	},
 ];
 
-export const value = dev && getValue(u.length);
+// const value = getValue(u.length);
 
+const value = parseInt(new URL(location.href).searchParams.get("id") ?? "0");
 export default function MultiplayerProvider({
 	children,
 }: Readonly<PropsWithChildren>) {
 	const onlineUsers = useUserList();
 	const requestUsers = useUserList();
+
+	// const param = useSearchParams();
 
 	const { user } = useUser();
 
@@ -92,6 +93,8 @@ export default function MultiplayerProvider({
 		});
 
 		multiplayer.on("add.online", (user) => {
+			// TODO uncomment to see all users eccept the current one.
+			// if (user.uid !== uid)
 			onlineUsers.addUser(user);
 			console.log("Single : ", user.userName);
 		});

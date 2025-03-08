@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 
 interface RouteAnimationProps extends PropsWithChildren {
 	className?: string;
+	id?: string;
 }
 
 export default function RouteAnimate({

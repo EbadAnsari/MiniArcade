@@ -26,7 +26,7 @@ export default function PlayerList({ userList, onClick }: PlayerListProps) {
 				>
 					<p className="my-auto">{user.userName}</p>
 					<img
-						src="arrow-left-icon.svg"
+						src="/public/arrow-left-icon.svg"
 						className="w-4 rotate-180 invert"
 						alt="Play icon."
 					/>

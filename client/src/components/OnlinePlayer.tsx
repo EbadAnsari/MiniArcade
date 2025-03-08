@@ -36,13 +36,16 @@ export default function OnlinePlayer() {
 			data: requestUsers.usersList,
 			title: "Requested",
 			description: "You requested to play",
-			onClick(user: SocketUser) {},
+			onClick(user: SocketUser) {
+				user;
+			},
 		},
 		{
 			data: onlineUsers.usersList,
 			title: "Play",
 			description: "Request accepted to play",
 			onClick(user: SocketUser) {
+				user;
 				multiplayer.emit("play.response", {
 					socketId: multiplayer.socketId,
 				});
