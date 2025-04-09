@@ -17,6 +17,8 @@ Instructions on how to install and set up your project.
 2. Install dependencies using `npm install` or `yarn install`
 3. Run the project using `npm run start` or `yarn start`
 
+[Project Link](https://miniarcade-app.web.app/)
+
 ## Usage
 
 Instructions on how to use your project and any relevant examples or code snippets.
