@@ -1,32 +1,23 @@
-# Mini Arcade
+# 🎮 Tic Tac Toe – Multiplayer Web Game
 
-A brief description of your project.
+A modern and interactive web version of the classic Tic Tac Toe game built with **React.js**. This app features a clean user interface, a two-player local mode, and a computer AI mode. A multiplayer upgrade is currently in progress, allowing players to connect and compete online in real time.
 
-## Table of Contents
+## 🚀 Technologies Used
+- React.js
+- HTML5
+- CSS3
+- JavaScript (ES6)
 
--   [Installation](#installation)
--   [Usage](#usage)
+## 🧩 Features
+- Beautiful and responsive game UI
+- Play against a friend or the computer
+- Computer AI logic for single-player mode
+- Multiplayer mode (under development)
+- Real-time gameplay (planned using WebSockets)
 
-## Installation
-
-Instructions on how to install and set up your project.
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies using `npm install` or `yarn install`
-3. Run the project using `npm run start` or `yarn start`
-
-[Project Link](https://miniarcade-app.web.app/)
-
-## Usage
-
-Instructions on how to use your project and any relevant examples or code snippets.
-
-## Contributing
-
-Guidelines for contributing to your project, including how to submit pull requests and report issues.
-
-## License
-
-Information about the license for your project.
+## 🔧 Setup Instructions
+```bash
+git clone https://github.com/ebadansari/tic-tac-toe-react.git
+cd tic-tac-toe-react
+npm install
+npm start
