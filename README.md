@@ -21,6 +21,7 @@ git clone https://github.com/ebadansari/tic-tac-toe-react.git
 cd tic-tac-toe-react
 npm install
 npm start
+```
 
 
 # 🎮 Tic Tac Toe – Multiplayer Web Game
