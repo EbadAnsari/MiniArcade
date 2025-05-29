@@ -10,7 +10,7 @@ A modern, interactive Tic Tac Toe game built with **React & Typescript**, design
 - 📊 **Score Monitor**: Real-time score tracking across rounds
 - 🌐 **Multiplayer Expansion** *(In Progress)*: Adding online multiplayer functionality using sockets or a backend system
 
-<img src="home.png" />
+<img src="home.png" width="33%" /> <img src="board.png" width="33%" /> <img src="login.png" width="33%" />
 
 ## 🚀 How to Run
 
