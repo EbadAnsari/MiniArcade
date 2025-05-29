@@ -1,6 +1,6 @@
 # 🎮 Tic Tac Toe – Multiplayer Web Game
 
-A modern, interactive Tic Tac Toe game built with **React.js**, designed for both fun and learning. This project supports **Player vs Player** and **Player vs Computer** modes and features a **real-time score monitor** that keeps track of wins and ties during gameplay.
+A modern, interactive Tic Tac Toe game built with **React & Typescript**, designed for both fun and learning. This project supports **Player vs Player** and **Player vs Computer** modes and features a **real-time score monitor** that keeps track of wins and ties during gameplay.
 
 ## ✨ Features
 
